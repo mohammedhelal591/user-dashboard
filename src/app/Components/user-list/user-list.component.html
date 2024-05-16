@@ -1,0 +1,40 @@
+@if(isLoading){
+
+<div>
+    Loading users...
+</div>
+} @else if(userList) {
+<div class="container p-5">
+    <div class="row p-5">
+        <div class="col-md-12 ">
+            <div class="col-md-12">
+                <input type="number" placeholder="Search by user id..." class="form-control" [(ngModel)]="userId">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row p-5">
+        @for (user of userList | search:userId!; track user.id) {
+        <div class="col-md-12 p-3">
+            <mat-card (click)="openUserInfo(user.id)" class="w-100">
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{user.first_name}} {{user.last_name}}</mat-card-title>
+                        <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+                        <img mat-card-xl-image [src]="user.avatar">
+                    </mat-card-title-group>
+                </mat-card-header>
+            </mat-card>
+        </div>
+        }
+    </div>
+
+
+</div>
+
+<div class="sticky-bottom ">
+    <ngb-pagination [collectionSize]="total" [(page)]="page" [boundaryLinks]="true" [maxSize]="per_page"
+        (pageChange)="onPageChange($event)" />
+</div>
+}

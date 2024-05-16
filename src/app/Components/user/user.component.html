@@ -1,0 +1,20 @@
+<div class="container p-5">
+    <button (click)="back()" mat-stroked-button color="primary" type="button">
+        <mat-icon>keyboard_backspace</mat-icon> Back
+    </button>
+</div>
+
+
+<div class="container p-5">
+    @if(user){
+    <div class="row align-items-center justify-content-center">
+        <mat-card class="p-5">
+            <mat-card-header class="pb-2 d-flex align-items-center justify-content-center flex-column">
+                <mat-card-title class="text-center">{{user.first_name}} {{user.last_name}}</mat-card-title>
+                <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+            </mat-card-header>
+            <img class="img-fluid" mat-card-image [src]="user.avatar">
+        </mat-card>
+    </div>
+    }
+</div>
